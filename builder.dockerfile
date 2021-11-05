@@ -4,10 +4,8 @@ ARG BS
 
 RUN dd if=/dev/urandom of=/rnd bs=$BS count=100
 
-FROM scratch
-
-COPY --from=builder /bin/sleep /bin
+FROM busybox:latest
 
 COPY --from=builder /rnd /
 
-CMD ["/bin/sleep", "50000"]
+CMD ["sleep", "50000"]
